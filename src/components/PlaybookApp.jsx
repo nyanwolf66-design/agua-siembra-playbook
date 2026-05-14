@@ -113,7 +113,7 @@ export default function PlaybookApp({ sections, parts }) {
           <img
             src="/wordmark-white.png"
             alt="Agua Siembra"
-            style={{ height: 44, width: 'auto', display: 'block', flexShrink: 0 }}
+            style={{ height: 66, width: 'auto', display: 'block', flexShrink: 0 }}
           />
 
           {/* Spacer */}
@@ -121,7 +121,7 @@ export default function PlaybookApp({ sections, parts }) {
 
           {/* Right: subtitle + search */}
           <div style={{
-            fontSize: 8, letterSpacing: '0.14em', textTransform: 'uppercase',
+            fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.50)', fontFamily: "'Inter', sans-serif",
             fontWeight: 600, flexShrink: 0,
           }}>
@@ -159,47 +159,53 @@ export default function PlaybookApp({ sections, parts }) {
 
       {/* ── Nav Drawer ── */}
       {navOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 40, display: 'flex', maxWidth: 480, margin: '0 auto' }}>
-          <nav style={{ width: '82%', maxWidth: 340, background: C.canvas, overflowY: 'auto', padding: '56px 0 32px', boxShadow: '4px 0 24px rgba(0,0,0,0.10)', WebkitOverflowScrolling: 'touch' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 60, display: 'flex', maxWidth: 480, margin: '0 auto' }}>
+          <nav style={{ width: '82%', maxWidth: 340, background: '#000000', overflowY: 'auto', padding: '20px 0 32px', boxShadow: '4px 0 24px rgba(0,0,0,0.50)', WebkitOverflowScrolling: 'touch' }}>
             {/* Logo in drawer */}
-            <div style={{ padding: '0 20px 16px', borderBottom: `1px solid ${C.border}`, marginBottom: 8 }}>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 22, color: C.andes, letterSpacing: '0.06em', lineHeight: 1 }}>Agua Siembra</div>
-              <div style={{ fontSize: 9, color: C.steel, letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 3, fontFamily: "'Inter', sans-serif" }}>Playbook Comercial v3.0</div>
+            <div style={{ padding: '0 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.10)', marginBottom: 8 }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 24, color: '#FFFFFF', letterSpacing: '0.06em', lineHeight: 1 }}>Agua Siembra</div>
+              <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.40)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 4, fontFamily: "'Inter', sans-serif" }}>Playbook Comercial v3.0</div>
             </div>
 
-            {parts.map(pt => {
+            {parts.map((pt, ptIdx) => {
               const ptSections = sections.filter(s => s.partId === pt.id)
               if (!ptSections.length) return null
+              const drawerColors = ['#C3D5A0','#81A9AF','#92B992','#4C7B84','#E2C792','#C98C73','#55836D']
+              const drawerColor = drawerColors[ptIdx] ?? '#C3D5A0'
               return (
                 <div key={pt.id} style={{ marginBottom: 4 }}>
-                  <div style={{ padding: '10px 20px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: pt.color, display: 'flex', alignItems: 'center', gap: 6 }}>
-                    {pt.num !== '—' && <span style={{ fontVariantNumeric: 'normal' }}>Parte {pt.num}</span>}
+                  <div style={{ padding: '10px 20px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: drawerColor, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    {pt.num !== '—' && <span>Parte {pt.num}</span>}
                     <span>— {pt.title}</span>
                   </div>
-                  {ptSections.map(s => (
-                    <button
-                      key={s.id}
-                      onClick={() => navigate(s.id)}
-                      style={{
-                        display: 'block', width: '100%', textAlign: 'left',
-                        padding: '9px 20px 9px 28px',
-                        background: activeSectionId === s.id ? C.paginaDeep : 'transparent',
-                        border: 'none', cursor: 'pointer',
-                        fontSize: 14, lineHeight: 1.3,
-                        color: activeSectionId === s.id ? C.tinta : C.steel,
-                        fontWeight: activeSectionId === s.id ? 600 : 400,
-                        borderLeft: activeSectionId === s.id ? `3px solid ${pt.color}` : '3px solid transparent',
-                        transition: 'background 120ms ease',
-                      }}
-                    >
-                      {typeof s.n === 'number' ? `${s.n}. ` : `${s.n}. `}{s.title}
-                    </button>
-                  ))}
+                  {ptSections.map(s => {
+                    const isActive = activeSectionId === s.id
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => navigate(s.id)}
+                        style={{
+                          display: 'flex', alignItems: 'flex-start', width: '100%', textAlign: 'left',
+                          padding: '8px 20px 8px 20px',
+                          background: isActive ? 'rgba(255,255,255,0.10)' : 'transparent',
+                          border: 'none', cursor: 'pointer',
+                          fontSize: 13, lineHeight: 1.4,
+                          color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)',
+                          fontWeight: isActive ? 600 : 400,
+                          borderLeft: isActive ? `3px solid ${drawerColor}` : '3px solid transparent',
+                          transition: 'background 120ms ease',
+                        }}
+                      >
+                        <span style={{ minWidth: 28, flexShrink: 0, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: isActive ? drawerColor : 'rgba(255,255,255,0.30)', paddingTop: 1 }}>{s.n}.</span>
+                        <span style={{ flex: 1 }}>{s.title}</span>
+                      </button>
+                    )
+                  })}
                 </div>
               )
             })}
           </nav>
-          <div onClick={() => setNavOpen(false)} style={{ flex: 1, background: 'rgba(14,42,58,0.25)' }} />
+          <div onClick={() => setNavOpen(false)} style={{ flex: 1, background: 'rgba(0,0,0,0.50)' }} />
         </div>
       )}
 
