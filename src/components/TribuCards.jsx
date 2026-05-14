@@ -108,7 +108,7 @@ export default function TribuCards() {
 
               {/* Expanded detail */}
               {isOpen && (
-                <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px solid ${r.ac}30`, fontSize: 12, color: '#1F2A30', lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>
+                <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px solid ${r.ac}30`, fontSize: 14, color: '#1F2A30', lineHeight: 1.65, fontFamily: "'Inter', sans-serif" }}>
                   {r.detail}
                 </div>
               )}

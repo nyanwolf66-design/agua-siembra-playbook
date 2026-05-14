@@ -1,4 +1,4 @@
-const CACHE = 'playbook-siembra-v1'
+const CACHE = 'playbook-siembra-v3'
 
 const PRECACHE = [
   '/',
