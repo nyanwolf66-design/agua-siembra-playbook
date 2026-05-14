@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { Search, Menu, X, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react'
 import ContentRenderer from './ContentRenderer'
 import TribuCards from './TribuCards'
+import PortafolioCards from './PortafolioCards'
 
 const C = {
   bg:          '#F6F2EA',
@@ -251,6 +252,7 @@ export default function PlaybookApp({ sections, parts }) {
           <div style={{ margin: '16px 16px 0', background: C.canvas, borderRadius: 14, padding: '20px 18px', border: `1px solid ${C.border}`, boxShadow: '0 1px 4px rgba(0,0,0,0.03)' }}>
             {activeSection && <ContentRenderer content={activeSection.content} />}
             {activeSection?.id === 's8' && <TribuCards />}
+            {activeSection?.id === 's5' && <PortafolioCards />}
           </div>
 
           {/* Sequential navigation */}

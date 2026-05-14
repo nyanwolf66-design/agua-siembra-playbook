@@ -14,12 +14,42 @@ const C = {
   error:       '#B33A2A',
 }
 
+const SEMAFORO = {
+  verde:    { color: '#1F8A5B', bg: '#E5F4ED', border: '#1F8A5B' },
+  amarillo: { color: '#8A6400', bg: '#FEF9E7', border: '#C8881F' },
+  rojo:     { color: '#B33A2A', bg: '#FDECEA', border: '#B33A2A' },
+}
+
+function getSemaforoStyle(text) {
+  const t = (typeof text === 'string' ? text : '').toLowerCase()
+  if (t.startsWith('verde'))    return SEMAFORO.verde
+  if (t.startsWith('amarillo')) return SEMAFORO.amarillo
+  if (t.startsWith('rojo'))     return SEMAFORO.rojo
+  return null
+}
+
+function extractText(children) {
+  if (typeof children === 'string') return children
+  if (Array.isArray(children)) return children.map(extractText).join('')
+  if (children?.props?.children) return extractText(children.props.children)
+  return ''
+}
+
 const components = {
-  h2: ({ children }) => (
-    <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.steel, marginTop: 28, marginBottom: 10, paddingBottom: 6, borderBottom: `1px solid ${C.border}` }}>
-      {children}
-    </h2>
-  ),
+  h2: ({ children }) => {
+    const text = extractText(children)
+    const sem = getSemaforoStyle(text)
+    if (sem) return (
+      <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: sem.color, marginTop: 28, marginBottom: 10, paddingBottom: 6, borderBottom: `2px solid ${sem.border}`, background: sem.bg, padding: '6px 10px', borderRadius: '4px 4px 0 0' }}>
+        {children}
+      </h2>
+    )
+    return (
+      <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.steel, marginTop: 28, marginBottom: 10, paddingBottom: 6, borderBottom: `1px solid ${C.border}` }}>
+        {children}
+      </h2>
+    )
+  },
   h3: ({ children }) => (
     <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: '0.04em', color: C.andes, marginTop: 22, marginBottom: 8 }}>
       {children}
@@ -55,9 +85,12 @@ const components = {
       {children}
     </ol>
   ),
-  li: ({ children, ordered }) => (
-    <li style={{ position: 'relative', paddingLeft: 18, marginBottom: 6, fontSize: 15, lineHeight: 1.65, color: C.charcoal }}>
-      <span style={{ position: 'absolute', left: 4, color: C.siembra, fontWeight: 700 }}>·</span>
+  li: ({ children, ordered, index }) => (
+    <li style={{ position: 'relative', paddingLeft: 20, marginBottom: 6, fontSize: 15, lineHeight: 1.65, color: C.charcoal }}>
+      {ordered
+        ? <span style={{ position: 'absolute', left: 0, fontSize: 12, fontWeight: 600, color: C.steel, fontFamily: "'JetBrains Mono', monospace" }}>{(index ?? 0) + 1}.</span>
+        : <span style={{ position: 'absolute', left: 4, color: C.siembra, fontWeight: 700 }}>·</span>
+      }
       {children}
     </li>
   ),
