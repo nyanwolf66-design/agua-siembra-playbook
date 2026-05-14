@@ -113,7 +113,7 @@ export default function PlaybookApp({ sections, parts }) {
           <img
             src="/wordmark-white.png"
             alt="Agua Siembra"
-            style={{ height: 22, width: 'auto', display: 'block', flexShrink: 0 }}
+            style={{ height: 44, width: 'auto', display: 'block', flexShrink: 0 }}
           />
 
           {/* Spacer */}
