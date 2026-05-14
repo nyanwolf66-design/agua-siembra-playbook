@@ -91,44 +91,47 @@ export default function PlaybookApp({ sections, parts }) {
   }, [])
 
   return (
-    <div style={{ background: C.bg, minHeight: '100dvh', maxWidth: 480, margin: '0 auto', position: 'relative', fontFamily: "'Inter', system-ui, sans-serif", display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div style={{ background: 'linear-gradient(180deg, #43B02A 0%, #00B189 100%)', minHeight: '100dvh', maxWidth: 480, margin: '0 auto', position: 'relative', fontFamily: "'Inter', system-ui, sans-serif", display: 'flex', flexDirection: 'column', height: '100dvh' }}>
 
       {/* ── Header ── */}
       <header style={{
         position: 'relative', zIndex: 50, flexShrink: 0,
-        background: 'linear-gradient(135deg, #061A26 0%, #1B4358 100%)',
-        boxShadow: '0 2px 12px rgba(6,26,38,0.35)',
+        background: '#000000',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.40)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', padding: '10px 14px', gap: 10 }}>
+          {/* Left: hamburger + logo */}
           <button
             onClick={() => { setNavOpen(v => !v); setSearchOpen(false) }}
             aria-label={navOpen ? 'Cerrar menú' : 'Abrir menú'}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, borderRadius: 8, color: 'rgba(250,247,241,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, borderRadius: 8, color: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
           >
             {navOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-          {/* Logo centrado */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/wordmark-white.png"
-              alt="Agua Siembra"
-              style={{ height: 18, width: 'auto', display: 'block' }}
-            />
-            <div style={{
-              fontSize: 8, letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: 'rgba(250,247,241,0.55)', fontFamily: "'Inter', sans-serif",
-              fontWeight: 600,
-            }}>
-              Playbook Comercial
-            </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/wordmark-white.png"
+            alt="Agua Siembra"
+            style={{ height: 22, width: 'auto', display: 'block', flexShrink: 0 }}
+          />
+
+          {/* Spacer */}
+          <div style={{ flex: 1 }} />
+
+          {/* Right: subtitle + search */}
+          <div style={{
+            fontSize: 8, letterSpacing: '0.14em', textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.50)', fontFamily: "'Inter', sans-serif",
+            fontWeight: 600, flexShrink: 0,
+          }}>
+            Playbook Comercial
           </div>
 
           <button
             onClick={() => { setSearchOpen(v => !v); setNavOpen(false); if (searchOpen) setQuery('') }}
             aria-label={searchOpen ? 'Cerrar búsqueda' : 'Buscar'}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, borderRadius: 8, color: searchOpen ? '#1F8A5B' : 'rgba(250,247,241,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, borderRadius: 8, color: searchOpen ? '#43B02A' : 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
           >
             <Search size={20} />
           </button>
@@ -203,11 +206,11 @@ export default function PlaybookApp({ sections, parts }) {
       {/* ── Search Results ── */}
       {searchOpen && query.length >= 2 && (
         <div ref={contentRef} style={{ flex: 1, overflowY: 'auto', padding: 16, WebkitOverflowScrolling: 'touch' }}>
-          <div style={{ fontSize: 12, color: C.steel, marginBottom: 12, fontWeight: 500 }}>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.80)', marginBottom: 12, fontWeight: 500 }}>
             {searchResults.length} resultado{searchResults.length !== 1 && 's'} para "{query}"
           </div>
           {searchResults.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '40px 0', color: C.stone, fontSize: 14 }}>
+            <div style={{ textAlign: 'center', padding: '40px 0', color: 'rgba(255,255,255,0.70)', fontSize: 14 }}>
               Sin resultados. Prueba con otra palabra.
             </div>
           )}
@@ -237,12 +240,12 @@ export default function PlaybookApp({ sections, parts }) {
         >
           {/* Section header */}
           <div style={{ padding: '20px 20px 0' }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: activePart?.color, marginBottom: 6 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: 6 }}>
               {activePart?.num !== '—' ? `Parte ${activePart?.num} · ` : ''}{activePart?.title}
             </div>
-            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 36, fontWeight: 400, color: C.tinta, lineHeight: 0.95, letterSpacing: '0.03em', margin: 0 }}>
+            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 36, fontWeight: 400, color: '#FFFFFF', lineHeight: 0.95, letterSpacing: '0.03em', margin: 0 }}>
               {(typeof activeSection?.n === 'number' || typeof activeSection?.n === 'string') && (
-                <span style={{ color: activePart?.color }}>{activeSection.n}.&nbsp;</span>
+                <span style={{ color: 'rgba(255,255,255,0.60)' }}>{activeSection.n}.&nbsp;</span>
               )}
               {activeSection?.title}
             </h1>
@@ -258,14 +261,14 @@ export default function PlaybookApp({ sections, parts }) {
           {/* Sequential navigation */}
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '16px 16px 0' }}>
             {prev ? (
-              <button onClick={() => navigate(prev.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, padding: '11px 12px', background: C.canvas, border: `1px solid ${C.border}`, borderRadius: 10, cursor: 'pointer', fontSize: 12, color: C.steel, minWidth: 0, textAlign: 'left' }}>
+              <button onClick={() => navigate(prev.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 12, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'left' }}>
                 <ChevronLeft size={14} style={{ flexShrink: 0 }} />
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', lineHeight: 1.3 }}>{prev.title}</span>
               </button>
             ) : <div style={{ flex: 1 }} />}
 
             {next ? (
-              <button onClick={() => navigate(next.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, padding: '11px 12px', background: C.canvas, border: `1px solid ${C.border}`, borderRadius: 10, cursor: 'pointer', fontSize: 12, color: C.steel, minWidth: 0, textAlign: 'right' }}>
+              <button onClick={() => navigate(next.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 12, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'right' }}>
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', lineHeight: 1.3 }}>{next.title}</span>
                 <ChevronRight size={14} style={{ flexShrink: 0 }} />
               </button>
@@ -273,7 +276,7 @@ export default function PlaybookApp({ sections, parts }) {
           </div>
 
           {/* Section counter */}
-          <div style={{ textAlign: 'center', padding: '12px 0 20px', fontSize: 11, color: C.stone, letterSpacing: '0.04em' }}>
+          <div style={{ textAlign: 'center', padding: '12px 0 20px', fontSize: 11, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.04em' }}>
             {activeIndex + 1} / {sections.length}
           </div>
         </main>
