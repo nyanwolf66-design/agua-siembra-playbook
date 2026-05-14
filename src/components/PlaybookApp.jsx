@@ -91,7 +91,7 @@ export default function PlaybookApp({ sections, parts }) {
   }, [])
 
   return (
-    <div style={{ background: 'linear-gradient(180deg, #43B02A 0%, #00B189 100%)', minHeight: '100dvh', maxWidth: 480, margin: '0 auto', position: 'relative', fontFamily: "'Inter', system-ui, sans-serif", display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div style={{ background: 'linear-gradient(180deg, #43B02A 0%, #00B189 100%)', minHeight: '100dvh', maxWidth: 480, margin: '0 auto', position: 'relative', fontFamily: "'Inter', system-ui, sans-serif", display: 'flex', flexDirection: 'column', height: '100dvh', overflowX: 'hidden' }}>
 
       {/* ── Header ── */}
       <header style={{
@@ -113,7 +113,7 @@ export default function PlaybookApp({ sections, parts }) {
           <img
             src="/wordmark-white.png"
             alt="Agua Siembra"
-            style={{ height: 66, width: 'auto', display: 'block', flexShrink: 0 }}
+            style={{ height: 66, width: 'auto', maxWidth: 180, display: 'block', flexShrink: 1 }}
           />
 
           {/* Spacer */}
@@ -121,7 +121,7 @@ export default function PlaybookApp({ sections, parts }) {
 
           {/* Right: subtitle + search */}
           <div style={{
-            fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase',
+            fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.50)', fontFamily: "'Inter', sans-serif",
             fontWeight: 600, flexShrink: 0,
           }}>
