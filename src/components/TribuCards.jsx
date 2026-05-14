@@ -60,7 +60,7 @@ export default function TribuCards() {
         Seis roles · Una misma cuenca
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {ROLES.map(r => {
           const isOpen = expanded === r.name
           return (
