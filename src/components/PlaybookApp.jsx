@@ -273,14 +273,14 @@ export default function PlaybookApp({ sections, parts }) {
           {/* Sequential navigation */}
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '16px 16px 0' }}>
             {prev ? (
-              <button onClick={() => navigate(prev.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 14, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'left' }}>
+              <button onClick={() => navigate(prev.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'left' }}>
                 <ChevronLeft size={14} style={{ flexShrink: 0 }} />
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', lineHeight: 1.3 }}>{prev.title}</span>
               </button>
             ) : <div style={{ flex: 1 }} />}
 
             {next ? (
-              <button onClick={() => navigate(next.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 14, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'right' }}>
+              <button onClick={() => navigate(next.id)} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, padding: '11px 12px', background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, cursor: 'pointer', fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.90)', minWidth: 0, textAlign: 'right' }}>
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', lineHeight: 1.3 }}>{next.title}</span>
                 <ChevronRight size={14} style={{ flexShrink: 0 }} />
               </button>
