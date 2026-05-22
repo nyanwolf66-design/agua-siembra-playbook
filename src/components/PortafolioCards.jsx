@@ -148,7 +148,7 @@ export default function PortafolioCards() {
                   {f.nombre === 'Lata 310 ml' && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src="/lata-310.jpg"
+                      src="/lata-310.png"
                       alt="Lata 310 ml Agua Siembra"
                       style={{
                         width: '100%', borderRadius: 8, marginBottom: 12,
