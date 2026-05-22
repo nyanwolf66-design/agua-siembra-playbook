@@ -135,7 +135,7 @@ export default function PortafolioCards() {
 
               {/* Canal — always visible */}
               <div style={{
-                fontSize: 11, color: '#6B7A85', marginBottom: isOpen ? 0 : 8,
+                fontSize: 11, color: '#6B7A85',
                 fontFamily: "'Inter', sans-serif",
               }}>
                 <strong style={{ color: '#1F2A30', fontWeight: 600 }}>Canal: </strong>{f.canal}
@@ -144,6 +144,18 @@ export default function PortafolioCards() {
               {/* Expanded content */}
               {isOpen && (
                 <div style={{ marginTop: 10 }}>
+                  {/* Product image — only for lata */}
+                  {f.nombre === 'Lata 310 ml' && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src="/lata-310.jpg"
+                      alt="Lata 310 ml Agua Siembra"
+                      style={{
+                        width: '100%', borderRadius: 8, marginBottom: 12,
+                        display: 'block', objectFit: 'cover',
+                      }}
+                    />
+                  )}
                   <div style={{
                     fontSize: 14, color: '#1F2A30', lineHeight: 1.65,
                     fontFamily: "'Inter', sans-serif",
@@ -159,18 +171,6 @@ export default function PortafolioCards() {
                   }}>
                     "{f.claim}"
                   </div>
-                </div>
-              )}
-
-              {/* Claim — collapsed preview */}
-              {!isOpen && (
-                <div style={{
-                  fontSize: 12, color: '#1F2A30', lineHeight: 1.5,
-                  borderLeft: `2px solid ${f.color}`,
-                  paddingLeft: 10, fontStyle: 'italic',
-                  fontFamily: "'Inter', sans-serif",
-                }}>
-                  "{f.claim}"
                 </div>
               )}
             </div>
