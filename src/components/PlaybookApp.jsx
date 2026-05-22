@@ -266,8 +266,15 @@ export default function PlaybookApp({ sections, parts }) {
                 <TribuCards />
                 {split >= 0 && <ContentRenderer content={activeSection.content.slice(split)} />}
               </>
+            })() : activeSection?.id === 's5' ? (() => {
+              const start = activeSection.content.indexOf('## Lata')
+              const closing = activeSection.content.indexOf('## Qué formato')
+              return <>
+                <ContentRenderer content={start >= 0 ? activeSection.content.slice(0, start) : activeSection.content} />
+                <PortafolioCards />
+                {closing >= 0 && <ContentRenderer content={activeSection.content.slice(closing)} />}
+              </>
             })() : <ContentRenderer content={activeSection?.content ?? ''} />}
-            {activeSection?.id === 's5' && <PortafolioCards />}
           </div>
 
           {/* Sequential navigation */}
