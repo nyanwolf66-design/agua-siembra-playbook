@@ -10,6 +10,7 @@ const FORMATS = [
     claim: 'La única agua mineral en lata del país. Premium, reciclable, y viaja a donde el vidrio no llega.',
     color: '#00AFD7',
     highlight: 'Reciclable',
+    img: '/lata-310.png',
     detail: 'Primera y única agua mineral en lata de Colombia. Aluminio 100% reciclable que puede convertirse en un nuevo envase en 60 días. La lata fue desarrollada para desbloquear ciudades donde la logística del vidrio no es viable: es el formato que permite la expansión geográfica.',
   },
   {
@@ -17,8 +18,9 @@ const FORMATS = [
     tag: 'Sin gas · Con gas',
     canal: 'HORECA premium, hoteles boutique, cafeterías especializadas',
     claim: 'La botella vuelve. Se lava, se rellena, sale de nuevo. Uno de los pocos sistemas de retornabilidad en vidrio para agua mineral en la región.',
-    color: '#1F8A5B',
+    color: '#C8881F',
     highlight: 'Retornable · circular',
+    img: '/vidrio-477.png',
     detail: 'El formato que cierra el ciclo del envase. Las botellas se recogen en los puntos de venta, regresan a la planta de Guasca, se lavan, se inspeccionan y vuelven a la línea de producción. La planta lava actualmente el 10% del vidrio puesto en el mercado, con meta de 25% en 2026. El vidrio retornable genera contacto recurrente con el punto de venta por la logística de recogida.',
   },
   {
@@ -26,8 +28,9 @@ const FORMATS = [
     tag: 'Sin gas · Con gas',
     canal: 'HORECA premium, hoteles boutique, cafeterías especializadas',
     claim: 'La botella vuelve. Se lava, se rellena, sale de nuevo. Uno de los pocos sistemas de retornabilidad en vidrio para agua mineral en la región.',
-    color: '#1F8A5B',
+    color: '#C8881F',
     highlight: 'Retornable · circular',
+    img: '/vidrio-750.png',
     detail: 'El formato que cierra el ciclo del envase. Las botellas se recogen en los puntos de venta, regresan a la planta de Guasca, se lavan, se inspeccionan y vuelven a la línea de producción. La planta lava actualmente el 10% del vidrio puesto en el mercado, con meta de 25% en 2026. El 750 ml es una botella elegante diseñada para servicio a la mesa en restaurantes premium. El vidrio retornable genera contacto recurrente con el punto de venta por la logística de recogida.',
   },
   {
@@ -37,6 +40,7 @@ const FORMATS = [
     claim: 'Agua mineral natural de páramo en botella hecha con 50% de plástico reciclado. Hidratación diaria con origen y propósito.',
     color: '#0E2A3A',
     highlight: 'rPET 50% reciclado',
+    img: '/pet-500.png',
     detail: 'Fabricado con 50% de resina reciclada (rPET). La empresa prioriza PET sobre PVC y trabaja en incrementar el porcentaje de reciclado.',
   },
   {
@@ -46,6 +50,7 @@ const FORMATS = [
     claim: 'La misma agua de páramo, en un formato que se queda en la mesa y acompaña toda la comida.',
     color: '#0E2A3A',
     highlight: 'rPET 50% reciclado',
+    img: '/pet-1l.png',
     detail: 'Presencia en mesa para formatos de mayor volumen. Ideal para servicio en restaurantes cuando los comensales son grupos o familias, catering y eventos donde se requiere cantidad sin sacrificar origen.',
   },
   {
@@ -133,29 +138,29 @@ export default function PortafolioCards() {
                 </div>
               </div>
 
-              {/* Canal — always visible */}
-              <div style={{
-                fontSize: 11, color: '#6B7A85',
-                fontFamily: "'Inter', sans-serif",
-              }}>
-                <strong style={{ color: '#1F2A30', fontWeight: 600 }}>Canal: </strong>{f.canal}
-              </div>
-
               {/* Expanded content */}
               {isOpen && (
                 <div style={{ marginTop: 10 }}>
-                  {/* Product image — only for lata */}
-                  {f.nombre === 'Lata 310 ml' && (
+                  {/* Product image */}
+                  {f.img && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src="/lata-310.png"
-                      alt="Lata 310 ml Agua Siembra"
+                      src={f.img}
+                      alt={f.nombre + ' Agua Siembra'}
                       style={{
                         width: '100%', borderRadius: 8, marginBottom: 12,
                         display: 'block', objectFit: 'cover',
                       }}
                     />
                   )}
+                  {/* Canal */}
+                  <div style={{
+                    fontSize: 11, color: '#6B7A85',
+                    fontFamily: "'Inter', sans-serif",
+                    marginBottom: 8,
+                  }}>
+                    <strong style={{ color: '#1F2A30', fontWeight: 600 }}>Canal: </strong>{f.canal}
+                  </div>
                   <div style={{
                     fontSize: 14, color: '#1F2A30', lineHeight: 1.65,
                     fontFamily: "'Inter', sans-serif",
