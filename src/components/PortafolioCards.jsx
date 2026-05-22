@@ -58,7 +58,8 @@ const FORMATS = [
     tag: 'Sin gas',
     canal: 'Retail, tiendas de conveniencia, hogares',
     claim: 'La única garrafa de cinco litros de agua mineral natural premium en el mercado.',
-    color: '#8A6E0F',
+    color: '#F2C544',
+    textColor: '#8A6E0F',
     highlight: 'Reciclable',
     detail: 'El formato "premium diario": agua mineral natural de páramo en un tamaño que funciona para el consumo frecuente en casa. Mercado en formación, con competencia limitada a marcas propias de retailers. Sin competidor directo en la categoría de agua mineral natural premium en este formato.',
   },
@@ -116,7 +117,7 @@ export default function PortafolioCards() {
                   </div>
                   <div style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: 9, color: f.color, fontWeight: 600,
+                    fontSize: 9, color: f.textColor || f.color, fontWeight: 600,
                     letterSpacing: '0.06em', textTransform: 'uppercase',
                   }}>
                     {f.tag}
@@ -125,8 +126,8 @@ export default function PortafolioCards() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0, marginLeft: 8 }}>
                   <span style={{
                     fontSize: 9, fontWeight: 700, letterSpacing: '0.05em',
-                    textTransform: 'uppercase', color: f.color,
-                    background: f.color + '18',
+                    textTransform: 'uppercase', color: f.textColor || f.color,
+                    background: (f.textColor || f.color) + '18',
                     padding: '3px 8px', borderRadius: 99,
                     fontFamily: "'Inter', sans-serif",
                   }}>
